@@ -25,7 +25,7 @@ function App() {
       <div className="title">
         <h2>Our Menu</h2>
         <div className="underline" />
-        <Categories filterItems={filterItems} categories={categories}/>
+        <Categories filterItems={filterItems} categories={categories} />
         <Menu items={menuItems} />
       </div>
     </section>
