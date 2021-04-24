@@ -1,11 +1,12 @@
-import Navbar from './Navbar'
+import { Fragment } from "react";
+import Navbar from "./Navbar";
 
 function App() {
   return (
-    <div>
-      <Navbar/>
-    </div>
-  )
+    <Fragment>
+      <Navbar />
+    </Fragment>
+  );
 }
 
 export default App;

@@ -1,56 +1,47 @@
 import { useState, useRef, useEffect } from "react";
 import { FaBars, FaTwitter } from "react-icons/fa";
-import { links, social } from "./data";
+import Sidebar from "./Sidebar";
+import { social } from "./data";
+
 import logo from "./logo.svg";
 
 const Navbar = () => {
+  const [showLinks, setShowLinks] = useState(false);
+  const linksContainerRef = useRef(null);
+  const linksRef = useRef(null);
+
+  useEffect(()=>{
+    const linksHeight = linksRef.current.getBoundingClientRect().height
+    if(showLinks){
+        linksContainerRef.current.style.height = `${linksHeight}px`
+    }else{
+        linksContainerRef.current.style.height = '0px'
+    }
+  }, [showLinks])
   return (
     <nav>
       <div className="nav-center">
         <nav className="nav-header">
           <img src={logo} alt="logo" />
-          <button className="nav-toggle">
+          <button
+            className="nav-toggle"
+            onClick={() => setShowLinks(!showLinks)}
+          >
             <FaBars />
           </button>
         </nav>
 
-        <div className="links-container show-container">
-          <ul className="links">
-            <li>
-              <a href="#">Home</a>
-            </li>
-            <li>
-              <a href="#">About</a>
-            </li>
-            <li>
-              <a href="#">Contact</a>
-            </li>
-            <li>
-              <a href="#">Products</a>
-            </li>
-          </ul>
-        </div>
+        <Sidebar showLinks={showLinks} linksContainerRef={linksContainerRef} linksRef={linksRef}/>
+
         <ul className="social-icons">
-          <li>
-            <a href="https://www.youtube.com">
-              <FaTwitter />
-            </a>
-          </li>
-          <li>
-            <a href="https://www.youtube.com">
-              <FaTwitter />
-            </a>
-          </li>
-          <li>
-            <a href="https://www.youtube.com">
-              <FaTwitter />
-            </a>
-          </li>
-          <li>
-            <a href="https://www.youtube.com">
-              <FaTwitter />
-            </a>
-          </li>
+          {social.map((socialIcon) => {
+            const { id, url, icon } = socialIcon;
+            return (
+              <li key={id}>
+                <a href={url}>{icon}</a>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </nav>
