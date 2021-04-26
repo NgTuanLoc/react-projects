@@ -1,10 +1,10 @@
 import { Fragment } from "react";
-import { links, social } from "./data";
+import { links } from "./data";
 
-const Sidebar = ({showLinks, linksContainerRef, linksRef}) => {
+const Sidebar = ({ linksContainerRef, linksRef }) => {
   return (
     <Fragment>
-      <div className='links-container' ref={linksContainerRef}>
+      <div className="links-container" ref={linksContainerRef}>
         <ul className="links" ref={linksRef}>
           {links.map((link) => {
             const { id, url, text } = link;

@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { FaBars, FaTwitter } from "react-icons/fa";
+import { FaBars } from "react-icons/fa";
 import Sidebar from "./Sidebar";
 import { social } from "./data";
 
@@ -10,14 +10,14 @@ const Navbar = () => {
   const linksContainerRef = useRef(null);
   const linksRef = useRef(null);
 
-  useEffect(()=>{
-    const linksHeight = linksRef.current.getBoundingClientRect().height
-    if(showLinks){
-        linksContainerRef.current.style.height = `${linksHeight}px`
-    }else{
-        linksContainerRef.current.style.height = '0px'
+  useEffect(() => {
+    const linksHeight = linksRef.current.getBoundingClientRect().height;
+    if (showLinks) {
+      linksContainerRef.current.style.height = `${linksHeight}px`;
+    } else {
+      linksContainerRef.current.style.height = "0px";
     }
-  }, [showLinks])
+  }, [showLinks]);
   return (
     <nav>
       <div className="nav-center">
@@ -31,7 +31,7 @@ const Navbar = () => {
           </button>
         </nav>
 
-        <Sidebar showLinks={showLinks} linksContainerRef={linksContainerRef} linksRef={linksRef}/>
+        <Sidebar linksContainerRef={linksContainerRef} linksRef={linksRef} />
 
         <ul className="social-icons">
           {social.map((socialIcon) => {
