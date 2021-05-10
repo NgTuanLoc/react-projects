@@ -1,12 +1,14 @@
-import { useState, useRef, useEffect, Fragment } from 'react'
-import {useGlobalContext} from './context'
+import { useState, useRef, useEffect, Fragment } from "react";
+import { useGlobalContext } from "./context";
 
 const Submenu = () => {
-  return (
-    <Fragment>
-      submenu
-    </Fragment>
-  )
-}
+  const { isSubmenuOpen } = useGlobalContext();
 
-export default Submenu
+  return (
+    <aside className={`${isSubmenuOpen ? "submenu show" : "submenu"} `}>
+      submenu
+    </aside>
+  );
+};
+
+export default Submenu;

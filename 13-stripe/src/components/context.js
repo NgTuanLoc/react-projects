@@ -4,7 +4,7 @@ import sublinks from "./data";
 const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isSubmenuOpen, setIsSubmenuOpen] = useState(true);
 
   const openSidebar = () => {
@@ -15,6 +15,7 @@ const AppProvider = ({ children }) => {
     setIsSubmenuOpen(true);
   };
   const closeSidebar = () => {
+    console.log("asdfadfasd");
     setIsSidebarOpen(false);
   };
 
@@ -24,7 +25,7 @@ const AppProvider = ({ children }) => {
 
   return (
     <AppContext.Provider
-      value={{ openSubmenu, openSidebar, closeSubmenu, closeSidebar }}
+      value={{ openSubmenu, openSidebar, closeSubmenu, closeSidebar , isSidebarOpen, isSubmenuOpen}}
     >
       {children}
     </AppContext.Provider>
