@@ -16,7 +16,7 @@ const App = () => {
             setPeople([]);
           }}
         >
-          Clear All !
+          Clear All !!!
         </button>
       </section>
     </main>
