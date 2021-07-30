@@ -14,7 +14,7 @@ const SingleColor = ({ rgb, weight, index }) => {
       clearInterval(timeout);
     };
   }, [alert]);
-  console.log(bcg);
+
   return (
     <article
       className={`color ${index > 10 && "color-light"}`}
