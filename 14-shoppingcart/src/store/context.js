@@ -1,4 +1,4 @@
-import React, { useState, useContext, useReducer, useEffect } from "react";
+import React, { useContext, useReducer, useEffect } from "react";
 import cartItems from "../data/data";
 import reducer from "./reducer";
 // ATTENTION!!!!!!!!!!
@@ -17,8 +17,19 @@ const AppProvider = ({ children }) => {
 
   const clearCart = () => dispatch({ type: "CLEAR_CART" });
   const clearItem = (id) => dispatch({ type: "REMOVE_ITEM", payload: id });
-  const increase = (id) => dispatch({ type: "INCREASE", payload: id });
-  const decrease = (id) => dispatch({ type: "DECREASE", payload: id });
+  const toggleAmount = (id, type) =>
+    dispatch({ type: "TOGGLE_AMOUNT", payload: { id, type} });
+
+  const fetchData = async () => {
+    dispatch({ type: "LOADING" });
+    const response = await fetch(url);
+    const cart = await response.json();
+    dispatch({ type: "FETCHING_DATA", payload: cart });
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   useEffect(() => {
     dispatch({ type: "GET_TOTALS" });
@@ -30,8 +41,7 @@ const AppProvider = ({ children }) => {
         ...state,
         clearCart,
         clearItem,
-        increase,
-        decrease,
+        toggleAmount,
       }}
     >
       {children}
