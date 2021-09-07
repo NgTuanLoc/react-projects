@@ -34,7 +34,7 @@ const Submenu = () => {
         {links.map((link, id) => {
           const { label, icon, url } = link;
           return (
-            <a href={url}>
+            <a href={url} key={id}>
               {icon}
               {label}
             </a>

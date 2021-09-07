@@ -1,9 +1,9 @@
 import React from 'react'
-import { useGlobalContext } from './context'
+import { useGlobalContext } from './store/context'
 
 // components
-import Navbar from './Navbar'
-import CartContainer from './CartContainer'
+import Navbar from './components/Navbar'
+import CartContainer from './components/CartContainer'
 // items
 
 function App() {

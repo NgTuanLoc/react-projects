@@ -1,5 +1,5 @@
 import React from 'react'
-import { useGlobalContext } from './context'
+import { useGlobalContext } from '../store/context'
 const CartItem = ({ id, img, title, price, amount }) => {
   return (
     <article className='cart-item'>
