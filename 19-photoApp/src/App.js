@@ -18,7 +18,7 @@ const searchUrl = `https://api.unsplash.com/search/photos/`;
 const App = () => {
   const [loading, setLoading] = useState(false);
   const [photos, setPhotos] = useState([]);
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   const [query, setQuery] = useState("");
   const mounted = useRef(false);
   const [newImages, setNewImages] = useState(false);
