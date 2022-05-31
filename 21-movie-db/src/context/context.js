@@ -1,11 +1,41 @@
 import { useState, useContext, useEffect, createContext } from "react";
 // make sure to use https
 export const API_ENDPOINT = `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_MOVIE_API_KEY}`;
-console.log(process.env.REACT_APP_MOVIE_API_KEY);
 const AppContext = createContext();
 
 const AppProvider = ({ children }) => {
-  return <AppContext.Provider value="hello">{children}</AppContext.Provider>;
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState({ show: false, msg: "" });
+  const [movies, setMovies] = useState([]);
+  const [query, setQuery] = useState("superman");
+
+  const fetchMovies = async (url) => {
+    setIsLoading(true);
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+
+      if ((data.Response = "True")) {
+        setMovies(data.Search);
+        setError({ show: false, msg: "" });
+        setIsLoading(false);
+      } else {
+        setError({ show: true, msg: "error" });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchMovies(`${API_ENDPOINT}&s=${query}`);
+  }, [query]);
+
+  return (
+    <AppContext.Provider value={{ isLoading, error, movies, query, setQuery }}>
+      {children}
+    </AppContext.Provider>
+  );
 };
 // make sure use
 export const useGlobalContext = () => {
