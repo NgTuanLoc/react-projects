@@ -25,9 +25,28 @@ const reducer = (state, action) => {
         hits: state.hits.filter((story) => story.objectID !== action.payload),
       };
 
-    case HANDLE_SEARCH: {
+    case HANDLE_SEARCH:
       return { ...state, query: action.payload };
+
+    case HANDLE_PAGE: {
+      if (action.payload === "incr") {
+        let nextPage = state.page + 1;
+        if (nextPage > state.nbPages - 1) {
+          nextPage = 0;
+        }
+        return { ...state, page: nextPage };
+      }
+
+      if (action.payload === "desc") {
+        let prevPage = state.page - 1;
+        if (prevPage < 0) {
+          prevPage = state.nbPages - 1;
+        }
+        return { ...state, page: prevPage };
+      }
+      return;
     }
+
     default:
       throw new Error(`No matching ${action.type} action type`);
   }
