@@ -26,6 +26,7 @@ function App() {
     answers.push(answers[randomIndex]);
     answers[randomIndex] = correct_answer;
   }
+
   return (
     <main>
       <Modal />
