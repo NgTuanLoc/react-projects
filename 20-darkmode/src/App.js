@@ -29,7 +29,7 @@ const App = () => {
     <main>
       <nav>
         <div className="nav-center">
-          <h1>Overeacted</h1>
+          <h1>OverReacted</h1>
           <button className="btn" onClick={toggleTheme}>
             Toggle
           </button>

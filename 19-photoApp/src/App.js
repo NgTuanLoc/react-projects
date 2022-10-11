@@ -6,6 +6,8 @@ const clientID = `?client_id=${process.env.REACT_APP_ACCESS_KEY}`;
 const mainUrl = `https://api.unsplash.com/photos/`;
 const searchUrl = `https://api.unsplash.com/search/photos/`;
 
+// https://api.unsplash.com/photos/?client_id=Msm2g0Mi8Leb9BE1Mda8xDL2izrusvvSf5Cqqkro2WM&page=1
+
 // remove current scroll code
 // set default page to 1
 // setup two useEffects
@@ -48,11 +50,14 @@ const App = () => {
       setLoading(false);
     } catch (error) {
       setNewImages(false);
-
       setLoading(false);
     }
   };
   useEffect(() => {
+    if (!mounted.current) {
+      mounted.current = true;
+      return;
+    }
     fetchImages();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
